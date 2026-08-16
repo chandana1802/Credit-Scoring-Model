@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Credit Scoring System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Credit Scoring System</h1>
+        <p>AI-powered creditworthiness prediction</p>
+    </div>
+
+    <form action="/predict" method="POST">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number"
+                       name="age"
+                       min="18"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Annual Income (₹)</label>
+                <input type="number"
+                       name="income"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Total Debt (₹)</label>
+                <input type="number"
+                       name="debt"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Loan Amount (₹)</label>
+                <input type="number"
+                       name="loan_amount"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Credit History (Years)</label>
+                <input type="number"
+                       name="credit_history_years"
+                       min="0"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Payment History (%)</label>
+                <input type="number"
+                       name="payment_history"
+                       min="0"
+                       max="100"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Number of Loans</label>
+                <input type="number"
+                       name="number_of_loans"
+                       min="0"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label>Employment Years</label>
+                <input type="number"
+                       name="employment_years"
+                       min="0"
+                       required>
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Predict Creditworthiness
+        </button>
+
+    </form>
+
+
+    {% if result %}
+
+    <div class="result">
+
+        <h2>{{ result }}</h2>
+
+        <p>{{ message }}</p>
+
+        {% if credit_score %}
+        <div class="score">
+            Credit Probability:
+            <strong>{{ credit_score }}%</strong>
+        </div>
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
